@@ -1,0 +1,352 @@
+.page{width:100%;height:92.5vh;}
+nav ul {padding: 0; margin: 0; list-style: none; display:flex; justify-content: center; background-color: antiquewhite;}
+#page1{background-image: url("image/background2.jpeg"); background-repeat: no-repeat; background-size: cover;}
+#page2{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
+#page3{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
+
+nav ul button{
+    background-color: beige;
+    color: black;
+    text-transform: uppercase;
+    
+}
+#pagecontainer{
+    overflow:hidden;
+}
+
+/*CSS for responsive menu*/
+#hamIcon{display:none;}
+@media screen and (max-width:800px){
+
+#hamIcon{display: block;} /* unhide menu icon */
+nav ul{display:none;} /*hide the menu item list*/
+
+.slider .list .item .content h2{
+    font-size: 60px;
+}
+
+.slider .list .item .CatImg{
+    top: 70%;
+}
+
+.slider .list .item .CatImg img{
+    width:100%;
+    height: 50%;
+
+}
+.arrows{
+    top: 100%;
+}
+
+
+}
+.menuHide{
+    display:block;
+}
+
+canvas{
+   
+    height: 95vh;
+    width: 100%;
+    border: 1px solid red;
+
+}
+body{
+    margin:0;
+    color: white;
+    background-image: url("image/Catrain.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+html{
+   
+}
+
+button{
+    background-color: rgb(63, 63, 63);
+    color: white;
+    border : none;
+    padding: 20px 16px;
+    font-size: 25px;
+}
+
+.slider {
+    height: 100vh;
+    position:relative;
+}
+
+.slider .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.5s;
+
+
+}
+
+.slider .list .item img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider .list .item .CatImg{
+    position: absolute;
+    left: 30%;
+    top: 15%;
+    width:70%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    
+}
+
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to top, #000 20%, transparent
+    );
+}
+
+.slider .list .item .content{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    max-width: 80px;
+    z-index: 1;
+}
+
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+
+}
+
+.slider .list .item .content h2{
+    font-size: 100px;
+    margin: 0;
+}
+
+.slider .list .item.active{
+    opacity: 1;
+    z-index: 10;
+}
+
+@keyframes showContent{
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h2,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+
+}
+
+@keyframes showcatimg{
+    to{
+        transform: translateX(0);
+        filter: blur(0);
+        opacity:1;
+    }
+}
+.slider .list .item.active .CatImg{
+    transform: translateX(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active h2{
+    animation-delay: 1s;
+}
+
+.slider .list .item.active p:nth-child(3){
+    animation-duration: 1.3s;
+}
+
+.arrows{
+    position: absolute;
+    top: 30%;
+    right: 50px;
+    z-index: 100;
+}
+
+.arrows button{
+    background-color: antiquewhite;
+    border: none;
+    font-family: monospace;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: white;
+    transition: .5s;
+}
+
+.arrows button:hover{
+    background-color: white;
+    color: black;
+}
+
+.card{
+    width: 100px;
+    height: 100px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 1;
+    color: black;
+}
+
+#sofa{
+    width: 50%;
+    position: absolute;
+    top: 30%;
+    left: 45%;
+}
+#trashcan{
+    width: 20%;
+    position: absolute;
+    top: 480px;
+    left: 120px;
+}
+
+
+#game {
+    width:700px;
+    height: 200px;
+    border: 3px solid black;
+    background-color: antiquewhite;
+    margin: auto;
+    position: absolute;
+    top: 70%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+#cat{
+    width: 10%;
+    
+    position: relative; 
+    top: 150px;
+    
+}
+.animate{
+    animation: jump 500ms;
+}
+
+#obstacle {
+    width: 50px;
+
+    
+   
+    position: relative;
+    top: 150px;
+    left: 580px;
+}
+.moveobstacle{
+    animation: block 1.5s infinite linear;
+}
+
+@keyframes block {
+    0% {left: 580px;}
+    100%{left:-100px;}
+}
+
+@keyframes jump{
+    0%{top:150px;}
+    30%{top: 100px;}
+    70%{top: 100px;}
+    100%{top:150px;}
+}
+
+#title{
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 75%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    text-align: center;
+    color: #646464;
+    
+}
+
+#title h2{
+    font-size: 250px;
+    color: beige;
+}
+
+#gamestartinfo{
+    text-transform: uppercase;
+    letter-spacing: 10px;
+  
+}
+
+.ball {
+    background-image: url("image/bubble.png");
+    background-color: transparent;
+    background-size: 100% 100%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-style: none;
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+    color:rgb(92, 250, 255);
+}
+
+
+
+#page1 #catbubbles {
+    position: absolute;
+    left: 70%;
+    bottom: 1px;
+    width:25%;
+    
+
+ 
+    
+    
+}
+
+#page1 #background {
+    position: absolute;
+   
+    width:100%;
+    height: 100%;
+    object-fit:cover;
+    
+}
+
+#page1 h1{
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    max-width: 80px;
+    font-size: 120px;
+ 
+    text-align: center;
+}
