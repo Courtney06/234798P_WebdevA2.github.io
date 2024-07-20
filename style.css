@@ -79,13 +79,15 @@ button{
     position: absolute;
     left: 30%;
     top: 15%;
-    width:80%;
+    width:100%;
    
     object-fit: cover;
     z-index: 1;
     
 }
-
+.slider .list .item .CatImg img{
+    width:75%;
+}
 .slider .list .item::after{
     content: '';
     width: 100%;
@@ -372,9 +374,9 @@ font-size: large;
 
 #page1 #catbubbles {
     position: absolute;
-    left: 70%;
+    left: 80%;
     bottom: 1px;
-    width:25%;
+    width:20%;
     
 
  
@@ -401,33 +403,7 @@ font-size: large;
     text-align: center;
 }
 
-#bubble1{
-    left: 150px;
-    top: 150px;
-}
 
-#bubble2{
-    left: 400px;
-    top: 600px;
-}
-
-
-#bubble3{
-    left: 600px;
-    top: 250px;
-}
-
-
-#bubble4{
-    left: 1000px;
-    top: 150px;
-}
-
-
-#bubble5{
-    left: 1100px;
-    top: 550px;
-}
 
 
 @media screen and (max-width:800px){
@@ -447,14 +423,18 @@ font-size: large;
     }
     
     .slider .list .item .CatImg{
-        top: 40%;
-        left: 40%;
+        top: 60%;
+        left: 30%;
         z-index: -1%
     }
     
+    nav ul button{
+        font-size: 10px;
+    }
     .slider .list .item .CatImg img{
         width:100%;
         height: 50%;
+        
     
     }
     .arrows{
@@ -463,7 +443,27 @@ font-size: large;
     #title{
        
         left : 50%;
+        color: white;
+        /* Hellu *0-0 um am here to help :D/
+        /* what issue again the bubbles?. ah ;-; im gonna help as much as i can :d
+        ill be in javascript
+        /*just sizing issue for now, for cats mainly, Im tryna solve the rest. :cries:*/
+    }
+
+    #title h2{
+        font-size: 100px;
         
+    }
+    
+    #game {
+        width:400px;
+     
+    }
+
+    
+
+    #title p{
+        color: white;
     }
 
     #game{
@@ -476,25 +476,30 @@ font-size: large;
     }
     
     #catbehavior{
-        top: 30%;
+        top: 20%;
+        
     }
 
     #catbehavior p{
         
-        font-size: medium;
+        font-size: 10px;
     }
 
     #sofa{
         top: 70%;
+        left: 30%;
+        width: 80%;
     }
 
     #trashcan{
-        top:80%;
+        top:70%;
+        width: 40%;
+        left: 0%;
     }
 
     .card{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
 
     .container #pusheen{
@@ -503,38 +508,11 @@ font-size: large;
     }
 
     #page1 #catbubbles {
-        width: 40%;
+        width: 30%;
         left: 60%;
     }
 
-    
-#bubble1{
-    left: 0px;
-    top: 0px;
-}
 
-#bubble2{
-    left: 0px;
-    top: 0px;
-}
-
-
-#bubble3{
-    left: 0px;
-    top: 0px;
-}
-
-
-#bubble4{
-    left: 0px;
-    top: 0px;
-}
-
-
-#bubble5{
-    left: 0px;
-    top: 0px;
-}
 .ball {
     font-size: 9px;
 }

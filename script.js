@@ -401,21 +401,44 @@ let Screenwidth = screen.width;
 
 //initialise bubbles and set px to variables (responsive)
 
-for (let i = 0; i < Ball.length;i++){
-    Ball[i].style.left = ballX[i];
-    Ball[i].style.top = ballY[i];
-    ballX[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("left"));
-    ballY[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("top"));
+var checkQuerey = window.matchMedia("(max-width: 800px)");
 
-    Ball[i].style.width = ballSize[i];
-    Ball[i].style.height = ballSize[i];
-    ballSize[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("width"));
-    minsize[i] = ballSize[i];
-    maxballsize[i] = minsize[i]*1.5;
-    console.log(ballSize[i]);
+
+
+// when mobile change size and stuff
+
+function mobileVersion(x){
+    if(x.matches){
+        //mobile
+        ballX = ["5vw","25vw","40vw", "55vw", "70vw"];
+        ballY = ["20vh","60vh","20vh", "60vh", "20vh"];
+        ballSize = ["40vw","40vw","40vw","40vw","40vw"];   
+
+    }else{
+        ballX = ["5vw","25vw","40vw", "55vw", "70vw"];
+        ballY = ["20vh","60vh","20vh", "60vh", "20vh"];
+        ballSize = ["20vw","20vw","20vw","20vw","20vw"];  
+    }
+    for (let i = 0; i < Ball.length;i++){
+        Ball[i].style.left = ballX[i];
+        Ball[i].style.top = ballY[i];
+        ballX[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("left"));
+        ballY[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("top"));
+    
+        Ball[i].style.width = ballSize[i];
+        Ball[i].style.height = ballSize[i];
+        ballSize[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("width"));
+        minsize[i] = ballSize[i];
+        maxballsize[i] = minsize[i]*1.5;
+        console.log(ballSize[i]);
+    }
 }
 
+mobileVersion(checkQuerey);
 
+checkQuerey.addEventListener("change",function(){
+    mobileVersion(checkQuerey);
+})
 
 
 var catfacts = ["Unique Nose Prints:\n Just like human fingerprints, \na cat's nose print is unique. No two \ncats have the same nose pattern, \nmaking each cat's nose as \nindividual as a human's fingerprint.",
