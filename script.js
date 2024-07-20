@@ -9,17 +9,17 @@ var moveableItems = document.querySelectorAll(".moveable");
 
 //there middlee
 function chnageMiddle(){
-    console.log("---BREAK---");
+    //console.log("---BREAK---");
     document.querySelector("#catbehavior").style.left = "50%";
     var leftofthing = parseInt(window.getComputedStyle(document.querySelector("#catbehavior")).getPropertyValue("left"));
     var sizeofwidth = (document.querySelector("#catbehavior")).scrollWidth/2;
-    console.log((leftofthing));
-    console.log((sizeofwidth));
+    //console.log((leftofthing));
+    //console.log((sizeofwidth));
     var newLeft = leftofthing - sizeofwidth;
-    console.log(newLeft);
+    //console.log(newLeft);
     document.querySelector("#catbehavior").style.left = newLeft.toString() + "px";
     //document.querySelector("#catbehavior").style.left = (parseInt(window.getComputedStyle(document.querySelector("#catbehavior")).getPropertyValue("left")) - (document.querySelector("#catbehavior").clientWidth/2)).toString() + "px";
-    console.log(document.querySelector("#catbehavior").style.left);
+    //console.log(document.querySelector("#catbehavior").style.left);
     
 }
 
@@ -198,7 +198,7 @@ var clickableItems = document.querySelectorAll(".clickable");
 function randomAll(){
     console.log("random");
     for (let oneItem of moveableItems){
-        oneItem.style.top = Math.floor(Math.random() * 80) + 10 + '%';
+        oneItem.style.top = Math.floor(Math.random() * 60) + 30 + '%';
         oneItem.style.left = Math.floor(Math.random() * 90) + '%';
         console.log(oneItem.style.top.toString() + " " + oneItem.style.left.toString());
     }
@@ -389,13 +389,32 @@ var checkDead = setInterval(function(){
 }, 10);
 
 const Ball = document.querySelectorAll(".ball");
+console.log(Ball);
 
-var ballX = [150,400,600, 1000, 1100];
-var ballY = [150,600,250, 150, 550];
-var ballSize = [300,300,300,300,300];   
+var ballX = ["5vw","25vw","40vw", "55vw", "70vw"];
+var ballY = ["20vh","60vh","20vh", "60vh", "20vh"];
+var ballSize = ["20vw","20vw","20vw","20vw","20vw"];   
 var minsize = [300,300,300,300,300]; 
 var maxballsize = [500,500,500,500,500];
 let Screenwidth = screen.width;
+
+
+//initialise bubbles and set px to variables (responsive)
+
+for (let i = 0; i < Ball.length;i++){
+    Ball[i].style.left = ballX[i];
+    Ball[i].style.top = ballY[i];
+    ballX[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("left"));
+    ballY[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("top"));
+
+    Ball[i].style.width = ballSize[i];
+    Ball[i].style.height = ballSize[i];
+    ballSize[i] = parseInt(window.getComputedStyle(Ball[i]).getPropertyValue("width"));
+    minsize[i] = ballSize[i];
+    maxballsize[i] = minsize[i]*1.5;
+    console.log(ballSize[i]);
+}
+
 
 
 
@@ -428,7 +447,7 @@ function resetPos(){
     UpdateBallStyle();
 }
 
-resetPos();
+//resetPos();
 
 function increasesize(num){
     ballX[num] -= maxballsize[num]/4;
@@ -464,3 +483,75 @@ function UpdateBallStyle(){
    
 }
 
+var submitAttribute = document.querySelector("#submitAttribute");
+
+
+submitAttribute.addEventListener("click",function(){
+    var lazy = document.querySelector('input[name="lazy"]:checked').value;
+    var affectionate = document.querySelector('input[name="affectionate"]:checked').value;
+    var fluffy = document.querySelector('input[name="fluffy"]:checked').value;
+    var social = document.querySelector('input[name="social"]:checked').value;
+    var intelligent = document.querySelector('input[name="intelligent"]:checked').value;
+    console.log(lazy + " " + affectionate + " " + fluffy + " " + social + " " + intelligent);
+
+    //Persion : lazy fluffy
+    //Mainecoon : fluffy intelligent social
+    //Siamese : affectionate social
+    show(3);
+
+    var output2 = "Pure";
+    
+    var output;
+    if(lazy == "true" && fluffy  == "true"){
+        output = "Persian";
+    }
+    else if (fluffy  == "true" && intelligent  == "true" && social  == "true"|| fluffy  == "true" && social  == "true"){
+        output = "Mainecoon";
+    }
+    else if (affectionate  == "true" && social  == "true"){
+        output = "Siamese";
+    }
+    else if (lazy == "true" || fluffy == "true"){
+        output = "Persian";
+    }
+    else if(intelligent  == "true" || social=="true"){
+        output = "Mainecoon";
+    }
+    else if(affectionate  == "true" || social=="true"){
+        output = "Siamese";
+    }
+
+    const item = document.querySelectorAll('.content');
+    let containsOutput = false;
+    let containsOutput2 = false;
+    var itemCount = 0;
+
+    for (let items of item){
+            console.log(output + " " + output2 + items.classList);
+            containsOutput = false;
+            containsOutput2 = false;
+            if (items.classList.contains(output)){
+                console.log(output);
+                containsOutput = true;
+            }
+            if (items.classList.contains(output2)){
+                console.log(output2);
+                containsOutput2 = true;
+            }
+            if (containsOutput && containsOutput2){
+                console.log(itemCount);
+                console.log("confirm");
+    
+    
+    
+                itemActive = itemCount;
+                if (itemActive >= item.length){
+                    itemActive = 0;
+                }
+                showSlider();
+                break;
+            }else{
+                itemCount++;
+            }
+        }
+});

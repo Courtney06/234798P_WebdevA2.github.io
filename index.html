@@ -65,7 +65,7 @@
                    
                
                 <img id = "pusheen" src = "image/pusheen.gif"> 
-                <img id = "backgroundimage" src = "image/wall.jpg">
+                
 
             </div>
         </div>
@@ -73,8 +73,8 @@
             <div class = "slider">
                 <div class="list">
                     <div class="item active">
-                        <img src = "image/backgroundimage.jpeg">
-                        <div class="content Persian Pure">
+                
+                        <div class="content Persian Pure Lazy Fluffy">
                             <p>Cat Breeds</p>
                             <h2>Persian</h2>
                             <p> Persian cats have long, luxurious coats and distinctive flat faces, exuding elegance. They are known for their calm, gentle demeanor and affectionate, laid-back personality. </p>
@@ -107,8 +107,8 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src = "image/backgroundimage.jpeg">
-                        <div class="content Mainecoon Pure">
+                     
+                        <div class="content Mainecoon Pure Fluffy Intelligent Social">
                             <p>Cat Breeds</p>
                             <h2>Maine Coon</h2>
                             <p> Maine Coon cats are large, fluffy, and have tufted ears with a friendly, playful, and sociable personality. They are intelligent, enjoy human companionship, and often get along well with other pets.</p>
@@ -140,8 +140,8 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img src = "image/backgroundimage.jpeg">
-                        <div class="content Siamese Pure">
+                       
+                        <div class="content Siamese Pure Affectionate Social">
                             <p>Cat Breeds</p>
                             <h2>Siamese</h2>
                             <p> Siamese cats are sleek with striking blue almond-shaped eyes and a short coat featuring color points. They are vocal, affectionate, and social, often forming strong bonds with their human companions.</p>
@@ -176,7 +176,7 @@
                     </div>
                     
                     <div class="item">
-                        <img src = "image/backgroundimage.jpeg">
+                    
                         <div class="content Siamese Mainecoon">
                             <p>Mixed Cat Breeds</p>
                             <h2>Siamese Mainecoon Mix</h2>
@@ -188,7 +188,7 @@
                     </div>
 
                     <div class="item">
-                        <img src = "image/backgroundimage.jpeg">
+                     
                         <div class="content Siamese Persian">
                             <p>Mixed Cat Breeds</p>
                             <h2>Siamese Persian Mix</h2>
@@ -200,7 +200,7 @@
                     </div>
 
                     <div class="item">
-                        <img src = "image/backgroundimage.jpeg">
+                    
                         <div class="content Mainecoon Persian">
                             <p>Mixed Cat Breeds</p>
                             <h2>Mainecoon Persian Mix</h2>
@@ -223,10 +223,48 @@
             
         </div>
         <div class="page" id="page4">
-
+            <h1>Attributes Form</h1>
+            <form action="/submit" method="post" id="formreco">
+                <label>Lazy:</label>
+                <input class="boolbtn" type="radio" id="lazy-true" name="lazy" value="true">
+                <label for="lazy-true">True</label>
+                <input class="boolbtn" type="radio" id="lazy-false" name="lazy" value="false" checked>
+                <label for="lazy-false">False</label>
+                <br><br>
+                
+                <label>Affectionate:</label>
+                <input class="boolbtn" type="radio" id="affectionate-true" name="affectionate" value="true">
+                <label for="affectionate-true">True</label>
+                <input class="boolbtn" type="radio" id="affectionate-false" name="affectionate" value="false" checked>
+                <label for="affectionate-false">False</label>
+                <br><br>
+                
+                <label>Fluffy:</label>
+                <input class="boolbtn" type="radio" id="fluffy-true" name="fluffy" value="true">
+                <label for="fluffy-true">True</label>
+                <input class="boolbtn" type="radio" id="fluffy-false" name="fluffy" value="false" checked>
+                <label for="fluffy-false">False</label>
+                <br><br>
+                
+                <label>Social:</label>
+                <input class="boolbtn" type="radio" id="social-true" name="social" value="true">
+                <label for="social-true">True</label>
+                <input class="boolbtn" type="radio" id="social-false" name="social" value="false" checked>
+                <label for="social-false">False</label>
+                <br><br>
+                
+                <label>Intelligent:</label>
+                <input class="boolbtn" type="radio" id="intelligent-true" name="intelligent" value="true">
+                <label for="intelligent-true">True</label>
+                <input class="boolbtn" type="radio" id="intelligent-false" name="intelligent" value="false" checked>
+                <label for="intelligent-false">False</label>
+                <br><br>
+                
+                <button type="button" id="submitAttribute">Submit</button>
+            </form>
         </div>
        
-        </div>
+    </div>
         
 </body>
 </html>
