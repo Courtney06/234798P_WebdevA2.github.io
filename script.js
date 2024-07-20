@@ -3,7 +3,27 @@
 const page1btn=document.querySelector("#page1btn");
 const page2btn=document.querySelector("#page2btn");
 const page3btn=document.querySelector("#page3btn");
+const page4btn=document.querySelector("#page4btn");
 var allpages=document.querySelectorAll(".page");
+var moveableItems = document.querySelectorAll(".moveable");
+
+//there middlee
+function chnageMiddle(){
+    console.log("---BREAK---");
+    document.querySelector("#catbehavior").style.left = "50%";
+    var leftofthing = parseInt(window.getComputedStyle(document.querySelector("#catbehavior")).getPropertyValue("left"));
+    var sizeofwidth = (document.querySelector("#catbehavior")).scrollWidth/2;
+    console.log((leftofthing));
+    console.log((sizeofwidth));
+    var newLeft = leftofthing - sizeofwidth;
+    console.log(newLeft);
+    document.querySelector("#catbehavior").style.left = newLeft.toString() + "px";
+    //document.querySelector("#catbehavior").style.left = (parseInt(window.getComputedStyle(document.querySelector("#catbehavior")).getPropertyValue("left")) - (document.querySelector("#catbehavior").clientWidth/2)).toString() + "px";
+    console.log(document.querySelector("#catbehavior").style.left);
+    
+}
+
+setInterval(chnageMiddle,100);
 
 //select all subtopic pages
 console.log(allpages);
@@ -28,12 +48,15 @@ show(1);
 
 });
 page2btn.addEventListener("click", function () {
+randomAll();
 show(2);
 });
 page3btn.addEventListener("click", function () {
 show(3);
 });
-
+page4btn.addEventListener("click", function () {
+    show(4);
+    });
 /*JS for hamMenu */
 const hamBtn=document.querySelector("#hamIcon");
 hamBtn.addEventListener("click",toggleMenus);
@@ -62,7 +85,7 @@ next.onclick = function(){
 
 prev.onclick = function(){
     itemActive = itemActive -1;
-    if (itemActive <= 0){
+    if (itemActive < 0){
         itemActive = countItem - 1;
     }
     showSlider();
@@ -79,59 +102,217 @@ function showSlider(){
 
 }
 
-let newX = [0, 0];
-let newY = [0, 0];
-let startX = [0, 100];
-let startY = [0, 100];
-const cards = document.querySelectorAll('.card'); // Select elements with the class 'card'
-for (let i = 0; i < cards.length; i++) {
-    cards[i].addEventListener('mousedown', function (e) {
-        mouseDown(i, e);
+var catBreedButton = document.querySelectorAll("#catBreedCheck");
+
+var parentButton;
+
+for(let oneButton of catBreedButton){
+    oneButton.addEventListener("click",function(){
+        parentButton = oneButton.parentElement;
+        console.log(parentButton);
+        getOption();
+        
     });
 }
 
-function mouseDown(num, e) {
-    startX[num] = e.clientX;
-    startY[num] = e.clientY;
+function getOption() {
+        selectElement = parentButton.querySelector('#Catbreed');
+        output = selectElement.value;
+        
+        selectElement2 = parentButton.querySelector('#Catbreed2');
+        output2 = selectElement2.value;
+        console.log("-----------BREAK-----------");
 
-    function onMouseMove(e) {
-        mouseMove(num, e);
-    }
+        if (output == output2){
+            output2 = "Pure";
+        }
+    
+        const item = document.querySelectorAll('.content');
+        let containsOutput = false;
+        let containsOutput2 = false;
 
-    function onMouseUp() {
-        mouseUp(num, onMouseMove, onMouseUp);
-    }
+        var itemCount = 0;
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+        for (let items of item){
+            console.log(output + " " + output2 + items.classList);
+            containsOutput = false;
+            containsOutput2 = false;
+            if (items.classList.contains(output)){
+                console.log(output);
+                containsOutput = true;
+            }
+            if (items.classList.contains(output2)){
+                console.log(output2);
+                containsOutput2 = true;
+            }
+            if (containsOutput && containsOutput2){
+                console.log(itemCount);
+                console.log("confirm");
+    
+    
+    
+                itemActive = itemCount;
+                if (itemActive >= item.length){
+                    itemActive = 0;
+                }
+                showSlider();
+            }else{
+                itemCount++;
+            }
+        }
+
+        // item.forEach(item => {
+        // if (item.classList.contains(output)){
+        //     containsOutput = true;
+        // }
+        // if (item.classList.contains(output2)){
+        //     containsOutput2 = true;
+        // }
+        // if (containsOutput && containsOutput2){
+        //     console.log(itemCount);
+        //     console.log("confirm");
+
+
+
+        //     itemActive = itemCount;
+        //     if (itemActive >= item.length){
+        //         itemActive = 0;
+        //     }
+        //     showSlider();
+        // }else{
+        //     itemCount++;
+        // }
+        // });
+        
+
 }
 
-function mouseMove(num, e) {
-    newX[num] = startX[num] - e.clientX;
-    newY[num] = startY[num] - e.clientY;
 
-    startX[num] = e.clientX;
-    startY[num] = e.clientY;
+var prevObject = "";
+var clickObject = "";
+var currentX,currentY,prevX,prevY;
 
-    cards[num].style.top = (cards[num].offsetTop - newY[num]) + 'px';
-    cards[num].style.left = (cards[num].offsetLeft - newX[num]) + 'px';
-}
+var clickableItems = document.querySelectorAll(".clickable");
 
-function mouseUp(num, onMouseMove, onMouseUp) {
-    document.removeEventListener('mousemove', onMouseMove);
-    document.removeEventListener('mouseup', onMouseUp);
 
-    let trashcard = document.getElementById("trash");
-    let trashcan = document.getElementById("trashcan"); 
-    var trashcardtop = parseInt(window.getComputedStyle(trashcard).getPropertyValue("top")); 
-    var trashcantop = parseInt(window.getComputedStyle(trashcan).getPropertyValue("top")); 
-    var trashcardleft = parseInt(window.getComputedStyle(trashcard).getPropertyValue("left")); 
-    var trashcanleft = parseInt(window.getComputedStyle(trashcan).getPropertyValue("left")); 
-
-    if (trashcardtop > trashcantop){
-        console.log("within");
+function randomAll(){
+    console.log("random");
+    for (let oneItem of moveableItems){
+        oneItem.style.top = Math.floor(Math.random() * 80) + 10 + '%';
+        oneItem.style.left = Math.floor(Math.random() * 90) + '%';
+        console.log(oneItem.style.top.toString() + " " + oneItem.style.left.toString());
     }
 }
+
+for(let oneItem of clickableItems){
+    oneItem.addEventListener("click",function(e){
+        prevX = currentX;
+        prevY = currentY;
+        currentX = e.clientX;
+        currentY = e.clientY;
+        prevObject = clickObject;
+        clickObject = oneItem.id;
+
+        if (prevObject == "") return;
+        if (document.querySelector("#" + prevObject).classList.contains("moveable") && oneItem.classList.contains("contain")){
+            var test = "#" + prevObject.toString();
+            console.log("move " + test +  " " + clickObject);
+            let prevObj = document.querySelector(test);
+    
+            let newX = prevX - e.clientX;
+            let newY = prevY - e.clientY;
+            
+            prevObj.style.top = (prevObj.offsetTop - newY) + 'px';
+            prevObj.style.left = (prevObj.offsetLeft - newX) + 'px';
+            if (checkAllItems()){
+                console.log("Win");
+                let text = document.getElementById("text");
+                text.innerText="Imagine experiencing this everyday...";
+            }
+
+        }
+                
+    });
+}
+
+function checkAllItems(){
+    var isAllOkay = true;
+    for(let oneItem of moveableItems){
+            let trashcard = document.getElementById(oneItem.id);
+            var idContainer;
+            if (trashcard.classList.contains("trashObj")){
+                idContainer = "trashcan";
+            }else if (trashcard.classList.contains("sofaObj")){
+                idContainer = "sofa";
+            } 
+            let trashcan = document.getElementById(idContainer); 
+            var trashcardtop = parseInt(window.getComputedStyle(trashcard).getPropertyValue("top")); 
+            var trashcantop = parseInt(window.getComputedStyle(trashcan).getPropertyValue("top")); 
+            var trashcardleft = parseInt(window.getComputedStyle(trashcard).getPropertyValue("left")); 
+            var trashcanleft = parseInt(window.getComputedStyle(trashcan).getPropertyValue("left")); 
+            var trashcardbottom = parseInt(window.getComputedStyle(trashcard).getPropertyValue("bottom")); 
+            var trashcanbottom = parseInt(window.getComputedStyle(trashcan).getPropertyValue("bottom")); 
+            var trashcardright = parseInt(window.getComputedStyle(trashcard).getPropertyValue("right"));
+            var trashcanright = parseInt(window.getComputedStyle(trashcan).getPropertyValue("right")); 
+
+            // 
+            if (trashcardtop > trashcantop && trashcardleft > trashcanleft && trashcardbottom > trashcanbottom && trashcardright > trashcanright){
+                // console.log("px : " + trashcard.clientHeight.toString() + " " + trashcard.clientWidth.toString());
+                // console.log("top : " + trashcardtop.toString() + " " +trashcantop.toString());
+                // console.log("bottom : " + trashcardbottom.toString() + " " +trashcanbottom.toString());
+                // console.log("right : " + trashcardright.toString() + " " +trashcanright.toString());
+                // console.log("left : " + trashcardleft.toString() + " " +trashcanleft.toString());
+            }else{
+                isAllOkay = false
+            }
+    }
+    return isAllOkay;
+}
+
+// let newX = [0, 0];
+// let newY = [0, 0];
+// let startX = [0, 100];
+// let startY = [0, 100];
+// const cards = document.querySelectorAll('.card'); // Select elements with the class 'card'
+// for (let i = 0; i < cards.length; i++) {
+//     // cards[i].addEventListener('mousedown', function (e) {
+//     //     mouseDown(i, e);
+//     // });
+// }
+
+// function mouseDown(num, e) {
+//     startX[num] = e.clientX;
+//     startY[num] = e.clientY;
+
+//     function onMouseMove(e) {
+//         mouseMove(num, e);
+//     }
+
+//     function onMouseUp() {
+//         mouseUp(num, onMouseMove, onMouseUp);
+//     }
+
+//     document.addEventListener('mousemove', onMouseMove);
+//     document.addEventListener('mouseup', onMouseUp);
+// }
+
+// function mouseMove(num, e) {
+//     newX[num] = startX[num] - e.clientX;
+//     newY[num] = startY[num] - e.clientY;
+
+//     startX[num] = e.clientX;
+//     startY[num] = e.clientY;
+
+//     cards[num].style.top = (cards[num].offsetTop - newY[num]) + 'px';
+//     cards[num].style.left = (cards[num].offsetLeft - newX[num]) + 'px';
+// }
+
+// function mouseUp(num, onMouseMove, onMouseUp) {
+//     document.removeEventListener('mousemove', onMouseMove);
+//     document.removeEventListener('mouseup', onMouseUp);
+
+    
+// }
 
 
     
@@ -209,16 +390,20 @@ var checkDead = setInterval(function(){
 
 const Ball = document.querySelectorAll(".ball");
 
-var ballX = [100,400,600, 1000, 1100];
-var ballY = [150,600,250, 100, 550];
+var ballX = [150,400,600, 1000, 1100];
+var ballY = [150,600,250, 150, 550];
 var ballSize = [300,300,300,300,300];   
 var minsize = [300,300,300,300,300]; 
 var maxballsize = [500,500,500,500,500];
-var catfacts = ["Unique Nose Prints:\n Just like human fingerprints, a cat's nose print is unique. No two cats have the same nose pattern, making each cat's nose as individual as a human's fingerprint.",
-    "Communication: Cats have a wide range of vocalizations. They can produce over 100 different sounds, ranging from meows and purrs to hisses and growls.",
-    "Whisker Sensitivity: A cat's whiskers are highly sensitive and can detect even the slightest changes in their environment. They help cats measure the width of openings, detect nearby objects, and even sense changes in the air currents",
-    "Flexible Spine: Cats are incredibly agile and have a unique skeletal structure that contributes to their flexibility. Their spine contains more vertebrae than most other mammals. ",
-    "Self-Grooming and Hygiene: Cats spend a significant portion of their day grooming themselves. This behavior helps them keep their fur clean, remove parasites, and regulate their body temperature. "]
+let Screenwidth = screen.width;
+
+
+
+var catfacts = ["Unique Nose Prints:\n Just like human fingerprints, \na cat's nose print is unique. No two \ncats have the same nose pattern, \nmaking each cat's nose as \nindividual as a human's fingerprint.",
+    "Communication: \nCats have a wide range of vocalizations. \nThey can produce over 100 different \nsounds, ranging from meows and \npurrs to hisses and growls.",
+    "Whisker Sensitivity: \nA cat's whiskers are highly sensitive \nand can detect even the slightest changes \nin their environment. They help \ncats measure the width of openings, \ndetect nearby objects, and \neven sense changes in the air currents",
+    "Flexible Spine:\n Cats are incredibly agile and have \na unique skeletal structure that \ncontributes to their flexibility. \nTheir spine contains more \nvertebrae than most other mammals. ",
+    "Self-Grooming and Hygiene: \nCats spend a significant portion \nof their day grooming themselves. \nThis behavior helps them keep their fur \nclean, remove parasites, and regulate \ntheir body temperature. "]
 var catfactheader = ["Unique Nose Prints", "Communication", "Whisker Sensitivity", "Flexible Spine", "Self-Grooming and Hygiene"];
 
 for (let i =0; i < Ball.length; i++){

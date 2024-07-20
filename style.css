@@ -3,6 +3,12 @@ nav ul {padding: 0; margin: 0; list-style: none; display:flex; justify-content: 
 #page1{background-image: url("image/background2.jpeg"); background-repeat: no-repeat; background-size: cover;}
 #page2{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
 #page3{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
+#page4{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
+#page5{background-image: linear-gradient(rgb(63, 63, 63), rgb(0, 0, 0));}
+
+html{
+    overflow: hidden;
+}
 
 nav ul button{
     background-color: beige;
@@ -10,36 +16,17 @@ nav ul button{
     text-transform: uppercase;
     
 }
+
+nav ul button:hover{
+    background-color: rgb(225, 225, 197);
+}  
 #pagecontainer{
     overflow:hidden;
 }
 
 /*CSS for responsive menu*/
 #hamIcon{display:none;}
-@media screen and (max-width:800px){
 
-#hamIcon{display: block;} /* unhide menu icon */
-nav ul{display:none;} /*hide the menu item list*/
-
-.slider .list .item .content h2{
-    font-size: 60px;
-}
-
-.slider .list .item .CatImg{
-    top: 70%;
-}
-
-.slider .list .item .CatImg img{
-    width:100%;
-    height: 50%;
-
-}
-.arrows{
-    top: 100%;
-}
-
-
-}
 .menuHide{
     display:block;
 }
@@ -54,13 +41,13 @@ canvas{
 body{
     margin:0;
     color: white;
+   
+}
+
+html {
     background-image: url("image/Catrain.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-html{
-   
 }
 
 button{
@@ -96,8 +83,8 @@ button{
     position: absolute;
     left: 30%;
     top: 15%;
-    width:70%;
-    height: 100%;
+    width:80%;
+   
     object-fit: cover;
     z-index: 1;
     
@@ -119,7 +106,7 @@ button{
     position: absolute;
     left: 10%;
     top: 20%;
-    max-width: 80px;
+   
     z-index: 1;
 }
 
@@ -132,8 +119,12 @@ button{
 .slider .list .item .content h2{
     font-size: 100px;
     margin: 0;
+    max-width: 80px;
 }
 
+.slider .list .item .content p:nth-child(3){
+    max-width: 250px;
+}
 .slider .list .item.active{
     opacity: 1;
     z-index: 10;
@@ -149,7 +140,8 @@ button{
 
 .slider .list .item.active p:nth-child(1),
 .slider .list .item.active h2,
-.slider .list .item.active p:nth-child(3){
+.slider .list .item.active p:nth-child(3)
+{
     transform: translateY(30px);
     filter: blur(20px);
     opacity: 0;
@@ -178,6 +170,18 @@ button{
     animation-duration: 1.3s;
 }
 
+.slider .list .item.active form{
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+
+}
+
+.slider .list .item.active form{
+    animation-duration: 1.5s;
+}
+
 .arrows{
     position: absolute;
     top: 30%;
@@ -203,30 +207,66 @@ button{
 }
 
 .card{
-    width: 100px;
+    width: 100px;    
     height: 100px;
-    background-color: aliceblue;
-    border-radius: 5px;
+
+  
     cursor: pointer;
     position: fixed;
     z-index: 1;
     color: black;
 }
 
+.card img{
+    width: 150%;
+}
+.container #backgroundimage{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 #sofa{
     width: 50%;
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 45%;
 }
 #trashcan{
     width: 20%;
     position: absolute;
-    top: 480px;
-    left: 120px;
+    top: 55%;
+    left: 5%;
+}
+
+.card{
+    /*starting positon of all moveable items*/  
+    top:80%;
+    left:50%;
 }
 
 
+#catbehavior {
+    position: absolute;
+    align-items: center;
+    max-width: 50%;
+    justify-content: center;
+    top: 20%;
+}
+#catbehavior p{
+   
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-align: center;
+    max-width: 1000px;;
+    font-size: x-large;
+}
+
+.container #pusheen{
+    position: absolute;
+    top: 70%;
+    left: 25%;
+}
 #game {
     width:700px;
     height: 200px;
@@ -301,7 +341,7 @@ button{
 }
 
 .ball {
-    background-image: url("image/bubble.png");
+    background-image: url("image/bubble2.png");
     background-color: transparent;
     background-size: 100% 100%;
     width: 100px;
@@ -313,11 +353,25 @@ button{
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
-    color:rgb(92, 250, 255);
+    text-wrap: wrap;
+    font-weight: bolder;
+    text-shadow: 0px 0px 5px gold;
+    -webkit-text-stroke: 0.2px white;
+    font-size: 100%;
+    color:rgb(156, 187, 131);
 }
 
+.ball p{
+    max-width: 50%;
+}
+
+form {
+    position: absolute;
+    top: 100%;
+}
+form label {
+font-size: large;
+}
 
 
 #page1 #catbubbles {
@@ -350,3 +404,141 @@ button{
  
     text-align: center;
 }
+
+#bubble1{
+    left: 150px;
+    top: 150px;
+}
+
+#bubble2{
+    left: 400px;
+    top: 600px;
+}
+
+
+#bubble3{
+    left: 600px;
+    top: 250px;
+}
+
+
+#bubble4{
+    left: 1000px;
+    top: 150px;
+}
+
+
+#bubble5{
+    left: 1100px;
+    top: 550px;
+}
+
+
+@media screen and (max-width:800px){
+
+    #hamIcon{display: block; font-size: x-large;  background-color: antiquewhite;color: black} /* unhide menu icon */
+    nav ul{display:none;} /*hide the menu item list*/
+    nav{
+        background-color: antiquewhite;  
+    }
+    
+    .slider .list .item .content h2{
+        font-size: 60px;
+    }
+
+    .slider .list .item .content{
+        top: 10%;
+    }
+    
+    .slider .list .item .CatImg{
+        top: 40%;
+        left: 40%;
+        z-index: -1%
+    }
+    
+    .slider .list .item .CatImg img{
+        width:100%;
+        height: 50%;
+    
+    }
+    .arrows{
+        top: 10%;
+    }
+    #title{
+       
+        left : 50%;
+        
+    }
+
+    #game{
+        left: 50%;  
+    }
+    html{
+      
+     
+        object-fit: cover;
+    }
+    
+    #catbehavior{
+        top: 30%;
+    }
+
+    #catbehavior p{
+        
+        font-size: medium;
+    }
+
+    #sofa{
+        top: 70%;
+    }
+
+    #trashcan{
+        top:80%;
+    }
+
+    .card{
+        width: 50px;
+        height: 50px;
+    }
+
+    .container #pusheen{
+        width: 15%;
+        top: 80%;
+    }
+
+    #page1 #catbubbles {
+        width: 40%;
+        left: 60%;
+    }
+
+    
+#bubble1{
+    left: 0px;
+    top: 0px;
+}
+
+#bubble2{
+    left: 0px;
+    top: 0px;
+}
+
+
+#bubble3{
+    left: 0px;
+    top: 0px;
+}
+
+
+#bubble4{
+    left: 0px;
+    top: 0px;
+}
+
+
+#bubble5{
+    left: 0px;
+    top: 0px;
+}
+
+    }
+
